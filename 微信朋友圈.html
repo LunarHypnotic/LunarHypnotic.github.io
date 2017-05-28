@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>朋友圈</title>
+	<meta charset="utf-8">
+</head>
+<body>
+ <div id="wrap">
+ 	<img src="images/1.jpg" id="head-img">
+ 	<div id="mian">
+ 		<p id="p1"><a href="#" id="name">Andy</a>:轻轻的我走了，正如我轻轻地来；我轻轻的招手，作别西边的云彩。</p>
+ 		<img src="images/img1.jpg">
+ 		<div id="date">
+ 			<img src="images/bg1.jpg">
+ 			<span id="time">02-14 23:01</span>
+ 			<button id="id_zan"><img src="images/bg2.jpg">赞</button>
+ 		</div>
+ 		<p id="zan_all"><img src="images/bg2.jpg">4人觉得很赞</p>
+ 		<div id="pl_list">
+ 			<div id="my_pinglun">
+ 			 <img src="images/my.jpg" id="my">
+ 			 <div id="neirong">
+ 				<p id="pl"><a href="#">我</a>:写得太好了。</p>
+ 				<p id="p2">2014-02-19 14：36</p>
+ 			 </div>
+ 			 <button id="zan"><img src="images/bg2.jpg">1赞</button>
+ 			</div>
+ 		</div>
+ 		<!-- <div id="Div"></div> -->
+ 		<div id="pinglun">
+ 		 <textarea cols="30" rows="1" placeholder="评论..." id="text" onpropertychange="if(value.length>100) value=value.substr(0,100)"></textarea>
+	     <button type="button" id="btn2">点击回复</button>
+ 	    </div>
+ 	   <!--  <p id="p3">(<i id='total'>0</i>/140)</p> -->
+ 	</div>
+ 	<button id="close">
+ 		X<!-- <div id="chacha"><div id="heng"></div><div id="shu"></div></div> -->
+ 	</button>
+ 	
+ </div>
+ <!-- ******************************************************************************************** -->
+ <!-- css -->
+ <style type="text/css">
+ 	body,div,p{margin: 0;padding: 0;}
+ 	div{display: inline-block;}
+ 	a{text-decoration: none;color: #168ee0;}
+ 	/*****************************************/
+ 	#p3{display: block;}
+ 	#pl_list{display: block;}
+    #my_pinglun{width: 380px;margin: 3px 0;}
+    #neirong{width: 250px;}
+ 	#Div{clear: both;}
+ 	#zan,#neirong{vertical-align: bottom;}
+ 	#my,#neirong{vertical-align: top;}
+ 	#pl{color: #444;font-size: 13px;}
+ 	#p2{color: #777;font-size: 13px;}
+ 	#pinglun,#my_pinglun{display: block;}
+ 	#zan{float: right;border: none;background-color: transparent;}
+ 	#my{height: 35px;}
+ 	#text{float: left;width: 300px;}
+ 	#btn2{float: left;background-color: transparent;border: 1px solid #333;}
+    #head-img,#mian{vertical-align: top;}
+    #date{display: block;}
+    #id_zan{float: right;background-color: transparent;border: none;}
+    #heng{width: 9px;height:2px;background-color: #888;}
+    #shu{width: 2px;height: 9px;z-index: 9;}
+    #time{font-size: 13px;color: #444;}
+    #close{display: none;}
+    p{
+    	font-size: 13px;
+        color: #333;
+        font-family: "微软雅黑";
+    }
+ </style>
+
+ <!-- ********************************************************************************************8 -->
+ <script type="text/javascript">
+ 	var id_zan=document.getElementById('id_zan');
+
+	var zan_all=document.getElementById('zan_all');
+	var zan_text='4人觉得很赞';
+	id_zan.onclick=function(){
+		// id_zan.innerHTML='取消赞';
+		if (id_zan.innerHTML=='<img src="images/bg2.jpg">赞') {
+			id_zan.innerHTML='<img src="images/bg3.jpg">取消赞';
+			zan_all.innerHTML='<img src="images/bg2.jpg">我和'+zan_text;
+		}
+		else{
+			id_zan.innerHTML='<img src="images/bg2.jpg">赞';
+			zan_all.innerHTML='<img src="images/bg2.jpg">'+zan_text;
+		}
+
+	}
+ </script>
+ <script type="text/javascript">
+	
+	var wrap=document.getElementById('wrap');
+	var btn=document.getElementById('close');
+		wrap.onmouseover=function(){
+			btn.style.display='inline-block';
+			btn.style.padding='5px 10px';
+			btn.style.border='none';
+			btn.style.backgroundColor=' #ddd';
+		}
+		wrap.onmouseout=function(){
+			btn.style.display='none';		}
+		btn.onclick=function(){
+			document.body.removeChild(this.parentNode);
+		}
+</script>
+
+<script type="text/javascript">
+
+		// 获取元素
+		var text=document.getElementById('text');
+		var btn2=document.getElementById('btn2');
+		var mian=document.getElementById('pl_list');
+
+
+
+
+		btn2.style.display='none';
+        
+		// 给元素添加点击事件
+		text.onclick=function(){btn2.style.display='block';}
+		btn2.onclick=function(){
+            var n=text.value;
+
+            
+			// 创造div
+			var Div=document.createElement('div');
+			// 将创造的Div添加到文档中
+			mian.appendChild(Div);
+			var a=n.split('');
+			for (var i = 36; i < a.length; i+=39) {
+				a[i]+='\n';
+				n=a.join('');
+			}
+			Div.innerHTML='<div id="my_pinglun"><img src="images/my.jpg" id="my"><div id="neirong"><p id="pl"><a href="#">我</a>:'+n+'</p><p id="p2">2014-02-19 14：36</p></div><button id="zan"><img src="images/bg2.jpg">1赞</button></div>';
+			// Div.style.display='block';
+			Div.style.clear='both';
+			Div.style.fontSize='13px';
+			Div.style.width='300px';
+			// Div.style.height='40px';
+			Div.style.display='block';
+			Div.style,margin='0';
+			text.value='';
+			btn2.style.display='none';
+		}
+	</script>
+
+
+ <!--    <script type="text/javascript">
+    	
+    	 text.oninput=function(){
+    	 	var text=getElementById('text');
+    	 	var total=getElementById('total');
+            var btn2=getElementById('btn2');
+    	if(text.value.length<=140){
+        total.innerText=text.value.length;
+        btn2.style.backgroundColor='#1ca5fc';
+        btn2.disabled=false;
+    	}
+    
+        else{
+        	total.innerText='141';
+        	text.value=text.value.substring(0,141);
+        	btn2.style.backgroundColor='#b3b3b3';
+        	btn2.disabled=true;
+        }
+    </script> -->
+</body>
+</html>
